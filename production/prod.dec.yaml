@@ -1,0 +1,11 @@
+data:
+  username: myuser
+  password: myveryverysecretpassword
+  raw_value_unencrypted: this value will not encrypted because have a suffix _unencrypted
+list:
+  - 1
+  - 2
+  - 3
+  - "one"
+  - "two"
+  - "tree"

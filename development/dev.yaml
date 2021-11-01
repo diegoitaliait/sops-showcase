@@ -1,0 +1,17 @@
+ciao: ENC[AES256_GCM,data:eDAWRg==,iv:MgCn6XjKQ0OKwCdAlmZOTfJgYCGtdHBrc56t9aTrlgA=,tag:w7zB7cBRpKBFG6009Jgs/g==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv:
+        - vault_url: https://kv-sops-showcase.vault.azure.net
+          name: key-sops-showcase
+          version: 3dd37eb2a5c34df3a40139164e520e87
+          created_at: "2021-11-01T13:28:30Z"
+          enc: nqLIkN4EwX4BIdnIdqtBZMskmFrZtuCEzimoJFVLEaqGtLjZ37bk41hBgUm6wnA1S3G8fR5l6U-EA8VLcMqWQQ3nKP9JzU-O_v96mLpylK4hIRperXE79o80reOY6PrIjAv5VpqiMLNRGYAI9zfHiS8akEJl2TRCScPanEu6OAS9nRsBCjvF1kpDMLz_bXfNQlJE_vBRayZIMKFXt1NuJ5DDb12YHGw18cFdV_kh0kOzzpNkkQbJRN2a9h21yJNgn-xjYlrRN3HBqWo-5IjTHErRk15m0hEqfR5OjqTI3ktWPcT33wCLrgeC9MgOHdh63AQP5HWIJiu9eaElqdYZcQ
+    hc_vault: []
+    age: []
+    lastmodified: "2021-11-01T13:28:52Z"
+    mac: ENC[AES256_GCM,data:Hjr7/xDjfv6/xn2PWrI6agIB1Kw9gQojcBmdRXUD0m5xyv6ii2+1a63r2agEM6x3wmmrks0XcOBlCvMkX6N5+sL/Mf1zBbcD5pTdtqLAIWJZYvwJvlYK1kectj9angxy/ReEE2mhOyRuVIdfSoWLS3B4czRMeO37gVzOg9bDSdI=,iv:RuuE/buzg9R8udeY1YAlk61PQo8THXBgrAtzgSabpGM=,tag:VH7aMQkZwp8aMpy0VzKZ2w==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.7.1
