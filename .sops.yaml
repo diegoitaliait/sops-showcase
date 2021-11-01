@@ -1,0 +1,16 @@
+# creation rules are evaluated sequentially, the first match wins
+creation_rules:
+  # upon creation of a file that matches the pattern dev.yaml,
+  # AZURE_KMS set A is used
+  - path_regex: .*/development/.*
+    azure_keyvault: 'https://kv-sops-showcase.vault.azure.net/keys/key-sops-showcase/3dd37eb2a5c34df3a40139164e520e87'
+
+  # prod files use AZURE_KMS set B in the PROD IAM
+  - path_regex: .*/production/.*
+    azure_keyvault: 'https://kv-sops-showcase.vault.azure.net/keys/key-sops-showcase/3dd37eb2a5c34df3a40139164e520e87'
+    pgp: '61325F2CBC748D2BA8C057FF3E0C7C5AA552FC1A'
+
+  # Finally, if the rules above have not matched, this one is a
+  # catchall that will encrypt the file using KMS set C
+  # The absence of a path_regex means it will match everything
+  - pgp: '61325F2CBC748D2BA8C057FF3E0C7C5AA552FC1A'
