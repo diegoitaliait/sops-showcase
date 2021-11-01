@@ -106,6 +106,8 @@ To avoid this tedius operation, you can use a config file called `.sops.yaml` sa
 
 for example:
 
+> ⚠️ in the config file the key related to azure is `azure_keyvault` and not `azure-kv`
+
 ```yaml
 # creation rules are evaluated sequentially, the first match wins
 creation_rules:
