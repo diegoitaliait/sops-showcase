@@ -6,13 +6,14 @@ mozilla sops showcase
 
 <https://github.com/mozilla/sops#motivation>
 
-## SOPS installation on MAC
+## SOPS best features
 
-```bash
-brew install sops
+* allow encription without password, you demand the RBAC checks and keys store to the cloud
+* allow the creation of a single source of truth, using a repository and allow the share of the secrets without fear of loosing everything
+* encription of only the values and not the keys, so is more simple to understand if something change during the manipulation
+* understand if new data was added and when it was done
 
-brew install gnupg
-```
+![Result in git compare](documentation/img/show_add_new_secret_compare_result.png)
 
 ## SOPS & Azure
 
@@ -99,10 +100,11 @@ SOPS allow you to encrypt/decrypt every file with more than one key, in this way
 For example you can encrypt your development files with a DEV & PROD keys, is this way you can delete the development key (an error) in the future, but be able to decrypt the values with your production key.
 Or remove the permission to some persons in dev, and still be able to decrypt the values.
 
-## Use .sops.yaml to save encryption logic
+## Use .sops.yaml to save encryption logic and rules
 
 Sops is great but every time you need to pass and remember the keys, and other parameters.
-To avoid this tedius operation, you can use a config file called `.sops.yaml` saved in the root directory, that allow to save the creation rules, that can be configured depends on a regexp on files
+To avoid this tedius operation, you can use a config file called `.sops.yaml` saved in the root directory,
+that allow to save the creation rules, that can be configured depends on a regexp on files
 
 for example:
 
@@ -149,3 +151,11 @@ as you can see, we don't need anymore to add the keyvault id
 - <https://www.youtube.com/watch?v=V2PRhxphH2w>
 - <https://www.thorsten-hans.com/encrypt-your-kubernetes-secrets-with-mozilla-sops/>
 - [Azure .sops.yaml file](https://github.com/mozilla/sops/issues/436)
+
+## SOPS installation on MAC
+
+```bash
+brew install sops
+
+brew install gnupg
+```
