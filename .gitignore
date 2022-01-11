@@ -1,3 +1,5 @@
+**/*.decrypted
+
 .history
 .DS_Store
 

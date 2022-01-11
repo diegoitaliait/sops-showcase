@@ -10,6 +10,9 @@ creation_rules:
     azure_keyvault: 'https://kv-sops-showcase.vault.azure.net/keys/key-sops-showcase/3dd37eb2a5c34df3a40139164e520e87'
     pgp: '61325F2CBC748D2BA8C057FF3E0C7C5AA552FC1A'
 
+  - path_regex: scripts/.*
+    azure_keyvault: 'https://kv-sops-showcase.vault.azure.net/keys/key-sops-showcase/3dd37eb2a5c34df3a40139164e520e87'
+
   # Finally, if the rules above have not matched, this one is a
   # catchall that will encrypt the file using KMS set C
   # The absence of a path_regex means it will match everything

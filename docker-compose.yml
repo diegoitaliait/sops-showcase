@@ -1,0 +1,11 @@
+
+version: "3.8"
+
+services:
+  sops:
+    image: sops-showcase
+    env_file:
+      - ./scripts/.env.decrypted
+    build:
+      context: ./
+      dockerfile: Dockerfile
