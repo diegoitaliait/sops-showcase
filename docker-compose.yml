@@ -2,7 +2,7 @@
 version: "3.8"
 
 services:
-  sops:
+  show-envs:
     image: sops-showcase
     env_file:
       - ./scripts/.env.decrypted
