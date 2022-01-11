@@ -1,0 +1,5 @@
+{
+    "scripts": {
+        "docker-envs": "sops -d scripts/.env > scripts/.env.decrypted && sleep 3 && docker-compose up"
+    }
+}
