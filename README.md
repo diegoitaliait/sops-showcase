@@ -13,7 +13,8 @@
     - [Encrypt file](#encrypt-file)
     - [Decrypt file](#decrypt-file)
     - [SOPS and multiple keys encryption/decryption](#sops-and-multiple-keys-encryptiondecryption)
-    - [Configuration file: Use .sops.yaml to save encryption logic and rules](#configuration-file-use-sopsyaml-to-save-encryption-logic-and-rules)
+    - [Configuration rules: Use .sops.yaml to save encryption logic and rules](#configuration-rules-use-sopsyaml-to-save-encryption-logic-and-rules)
+    - [Use SOPS with docker compose](#use-sops-with-docker-compose)
     - [Best practice](#best-practice)
     - [Documentation & sources](#documentation--sources)
     - [SOPS installation on MAC](#sops-installation-on-mac)
@@ -121,7 +122,7 @@ SOPS allow you to encrypt/decrypt every file with more than one key, in this way
 For example you can encrypt your development files with a DEV & PROD keys, is this way you can delete the development key (an error) in the future, but be able to decrypt the values with your production key.
 Or remove the permission to some persons in dev, and still be able to decrypt the values.
 
-## Configuration file: Use .sops.yaml to save encryption logic and rules
+## Configuration rules: Use .sops.yaml to save encryption logic and rules
 
 Sops is great but every time you need to pass and remember the keys url, and other parameters.
 To avoid this tedius operation, you can use a config file called `.sops.yaml` saved in the root directory,
@@ -129,7 +130,7 @@ that allow to save the creation rules, that can be configured depends on a regex
 
 for example:
 
-> ⚠ in the config file the key related to azure is `azure_keyvault` and not `azure-kv`
+> :warning: in the config file the key related to azure is `azure_keyvault` and not `azure-kv`
 
 ```yaml
 # creation rules are evaluated sequentially, the first match wins
@@ -167,6 +168,36 @@ Note:
 
 In the rule: ´.*/production/.*´ there are two keys, this means that you use two key for the encryption, but you need only one key for the de-cryption.
 So in case for example azure vault is no reachable you can still use your local PGP key (this is a best practice, see **Best Practice** )
+
+## Use SOPS with docker compose
+
+Is possible to use sops with docker compose, for example you have some build or env data that you want to use in your docker run.
+You can use this script bellow to decrypt the data in a temp file not related to your repo, so avoid to commit decrypted data.
+
+```bash
+FILETEMP="$(mktemp)" && sops -d scripts/.env > $FILETEMP && sleep 3 && docker-compose --env-file $FILETEMP up -d
+```
+
+The docker-compose file is like that
+
+```yaml
+version: "3.8"
+
+services:
+  show-envs:
+    image: sops-showcase
+    # env_file:
+    #   - ./scripts/.env.decrypted <- use only to test, use a temp file for security see package.json
+    environment:
+      SOPS_VAR1: ${SOPS_VAR1}
+      SOPS_VAR2: ${SOPS_VAR2}
+      SOPS_VAR3: ${SOPS_VAR3}
+    build:
+      context: ./
+      dockerfile: Dockerfile
+```
+
+As you can see, the section `env_file` is commented, in this way you  are forced to use the bash command, and so decrypt your data run time and not in your repo
 
 ## Best practice
 

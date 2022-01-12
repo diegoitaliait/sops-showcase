@@ -4,8 +4,12 @@ version: "3.8"
 services:
   show-envs:
     image: sops-showcase
-    env_file:
-      - ./scripts/.env.decrypted
+    # env_file:
+    #   - ./scripts/.env.decrypted <- use only to test, use a temp file for security see package.json
+    environment:
+      SOPS_VAR1: ${SOPS_VAR1}
+      SOPS_VAR2: ${SOPS_VAR2}
+      SOPS_VAR3: ${SOPS_VAR3}
     build:
       context: ./
       dockerfile: Dockerfile

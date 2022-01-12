@@ -1,5 +1,5 @@
 {
     "scripts": {
-        "docker-envs": "sops -d scripts/.env > scripts/.env.decrypted && sleep 3 && docker-compose up"
+        "docker-envs": "FILETEMP=\"$(mktemp)\" && sops -d scripts/.env > $FILETEMP && sleep 3 && docker-compose --env-file $FILETEMP up -d"
     }
 }
