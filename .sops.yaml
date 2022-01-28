@@ -13,6 +13,12 @@ creation_rules:
   - path_regex: scripts/.*
     azure_keyvault: 'https://kv-sops-showcase.vault.azure.net/keys/key-sops-showcase/3dd37eb2a5c34df3a40139164e520e87'
 
+  - path_regex: demo/demo_with_config/.*
+    azure_keyvault: 'https://kv-sops-showcase.vault.azure.net/keys/key-sops-showcase/3dd37eb2a5c34df3a40139164e520e87'
+
+  - path_regex: demo/demo_read_envs/.*
+    azure_keyvault: 'https://kv-sops-showcase.vault.azure.net/keys/key-sops-showcase/3dd37eb2a5c34df3a40139164e520e87'
+
   # Finally, if the rules above have not matched, this one is a
   # catchall that will encrypt the file using KMS set C
   # The absence of a path_regex means it will match everything
