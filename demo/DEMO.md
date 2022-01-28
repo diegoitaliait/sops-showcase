@@ -21,3 +21,11 @@ sops my-env.encrypt.yaml
 ```bash
 FILETEMP="$(mktemp)" && sops -d .env > $FILETEMP && echo $FILETEMP && source $FILETEMP && export $(cut -d= -f1 $FILETEMP) && sh see_env_vars.sh
 ```
+
+## DOCKER example
+
+from root:
+
+```bash
+FILETEMP="$(mktemp)" && sops -d scripts/.env > $FILETEMP && sleep 3 && docker-compose --env-file $FILETEMP up -d
+```
